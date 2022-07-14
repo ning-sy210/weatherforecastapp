@@ -1,3 +1,9 @@
 * {
   box-sizing: border-box;
 }
+
+.vertical-align {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
