@@ -33,7 +33,6 @@ const DateTimeField = ({ date, time, dispatch }) => {
             })
           }
           renderInput={(params) => <TextField {...params} />}
-          closeOnSelect={false}
         />
       </LocalizationProvider>
     </div>
