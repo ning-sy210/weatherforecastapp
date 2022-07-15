@@ -38,7 +38,6 @@ const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
     axios
       .get(weatherForecastURL)
       .then((res) => {
-        console.log(res.data);
         allLocations.current = makeCompact(res.data);
       })
       .catch((err) => console.log(err));
@@ -51,9 +50,7 @@ const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
         locationList={allLocations.current}
         dispatch={dispatch}
       />
-      <WeatherDisplay
-        location={allLocations.current.find((loc) => loc["area"] === location)}
-      />
+      <WeatherDisplay location={location} />
     </div>
   );
 };
