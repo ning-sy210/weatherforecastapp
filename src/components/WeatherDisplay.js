@@ -1,12 +1,12 @@
 import React from "react";
 
-import partlyCloudy from "../images/partly_cloudy.png";
+const WeatherDisplay = ({ location }) => {
+  if (!location) return;
 
-const WeatherDisplay = () => {
   return (
     <div className="vertical-align">
-      <img src={partlyCloudy} alt="Partly Cloudy" />
-      <div>Partly Cloudy</div>
+      <span>Weather Forecast:</span>
+      <span className="bold-text">{location["forecast"]}</span>
     </div>
   );
 };
