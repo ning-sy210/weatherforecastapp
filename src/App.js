@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useReducer } from "react";
 import "./App.css";
 
@@ -29,8 +30,8 @@ function reducer(state, action) {
 
 function App() {
   const [appState, dispatch] = useReducer(reducer, {
-    date: "",
-    time: "",
+    date: moment(),
+    time: moment(),
     location: {},
   });
 
@@ -47,11 +48,15 @@ function App() {
         location={appState["location"]}
         dispatch={dispatch}
       />
-      <TrafficImageFetcher
-        date={appState["date"]}
-        time={appState["time"]}
-        location={appState["location"]}
-      />
+      {appState["date"] &&
+        appState["time"] &&
+        Object.keys(appState["location"]).length !== 0 && (
+          <TrafficImageFetcher
+            date={appState["date"]}
+            time={appState["time"]}
+            location={appState["location"]}
+          />
+        )}
     </div>
   );
 }

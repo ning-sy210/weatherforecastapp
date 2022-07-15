@@ -1,37 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { DATE_FORMAT, TIME_FORMAT } from "../App";
+
+function locateCamera(data, coordinates) {
+  const allCameras = data["items"][0]["cameras"];
+  const loc = "location";
+  const latitude = "latitude";
+  const longitude = "longitude";
+
+  const DIFFERENCE = 0.05;
+
+  const camera = allCameras.find(
+    (camera) =>
+      Math.abs(camera[loc][latitude].toFixed(3) - coordinates[latitude]) <=
+        DIFFERENCE &&
+      Math.abs(camera[loc][longitude].toFixed(3) - coordinates[longitude]) <=
+        DIFFERENCE
+  );
+  return camera;
+}
 
 const TrafficImageFetcher = ({ date, time, location }) => {
-  const trafficImagesURL = `https://api.data.gov.sg/v1/transport/traffic-images`;
-  //   const trafficImagesURL = `https://api.data.gov.sg/v1/transport/traffic-images?date_time=${date}T${time}`;
   const [camera, setCamera] = useState(null);
-
-  function locateCamera(data) {
-    const allCameras = data["items"][0]["cameras"];
-    const loc = "location";
-    const latitude = "latitude";
-    const longitude = "longitude";
-
-    const cam = allCameras.find(
-      (camera) =>
-        camera[loc][latitude] === location[latitude] &&
-        camera[loc][longitude] === location[longitude]
-    );
-    setCamera(cam);
-  }
+  const currDate = useRef("");
+  const currTime = useRef("");
 
   useEffect(() => {
+    currDate.current = date.format(DATE_FORMAT);
+    currTime.current = time.format(TIME_FORMAT);
+    const trafficImagesURL = `https://api.data.gov.sg/v1/transport/traffic-images?date_time=${currDate.current}T${currTime.current}`;
+
     axios
       .get(trafficImagesURL)
       .then((res) => {
-        // locateCamera(res.data);
-        console.log(res.data);
+        setCamera(locateCamera(res.data, location["coordinates"]));
       })
-      .catch((err) => console.log("err"));
+      .catch((err) => console.log(err));
   }, [date, time, location]);
 
-  return;
-  //   return <img src={camera["image"]} />;
+  return camera ? <img src={camera["image"]} /> : "No image found :(";
 };
 
 export default TrafficImageFetcher;
