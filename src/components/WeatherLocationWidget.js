@@ -6,6 +6,23 @@ import LocationSelector from "./LocationSelector";
 import WeatherDisplay from "./WeatherDisplay";
 import { DATE_FORMAT, TIME_FORMAT } from "../App";
 
+function makeCompact(locationData) {
+  const areaMetaData = locationData["area_metadata"];
+  const forecasts = locationData["items"][0]["forecasts"];
+
+  const output = [];
+
+  for (let i = 0; i < areaMetaData.length; i++) {
+    const newData = {
+      ...forecasts[i],
+      coordinates: areaMetaData[i]["label_location"],
+    };
+    output.push(newData);
+  }
+
+  return output;
+}
+
 const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
   const allLocations = useRef([]);
   const currDate = useRef("");
@@ -22,7 +39,7 @@ const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
       .get(weatherForecastURL)
       .then((res) => {
         console.log(res.data);
-        allLocations.current = res.data["items"][0]["forecasts"];
+        allLocations.current = makeCompact(res.data);
       })
       .catch((err) => console.log(err));
   }, [date, time]);

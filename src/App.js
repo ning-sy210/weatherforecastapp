@@ -31,7 +31,7 @@ function App() {
   const [appState, dispatch] = useReducer(reducer, {
     date: "",
     time: "",
-    location: "",
+    location: {},
   });
 
   return (
@@ -47,7 +47,11 @@ function App() {
         location={appState["location"]}
         dispatch={dispatch}
       />
-      <TrafficImageFetcher />
+      <TrafficImageFetcher
+        date={appState["date"]}
+        time={appState["time"]}
+        location={appState["location"]}
+      />
     </div>
   );
 }
