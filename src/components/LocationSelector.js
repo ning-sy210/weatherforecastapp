@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { ACTIONS } from "../App";
 
-const LocationSelector = () => {
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const locations = ["Location 1", "Location 2", "Location 3"];
-
+const LocationSelector = ({ selectedLocation, locationList, dispatch }) => {
   return (
     <div>
       <Box sx={{ maxWidth: 360 }}>
@@ -16,11 +14,19 @@ const LocationSelector = () => {
             id="select-location"
             value={selectedLocation}
             label="Location"
-            onChange={(e) => setSelectedLocation(e.target.value)}
+            onChange={(e) =>
+              dispatch({
+                type: ACTIONS.SET_LOCATION,
+                payload: { location: e.target.value },
+              })
+            }
           >
-            {locations.map((location) => (
-              <MenuItem key={`location-menuitem-${location}`} value={location}>
-                {location}
+            {locationList.map((location) => (
+              <MenuItem
+                key={`location-menuitem-${location["name"]}`}
+                value={location}
+              >
+                {location["name"]}
               </MenuItem>
             ))}
           </Select>

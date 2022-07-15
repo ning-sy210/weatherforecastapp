@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import axios from "axios";
 
@@ -7,7 +7,7 @@ import WeatherDisplay from "./WeatherDisplay";
 import { DATE_FORMAT, TIME_FORMAT } from "../App";
 
 const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
-  var locations;
+  const allLocations = useRef([]);
 
   useEffect(() => {
     if (!date || !time) return;
@@ -20,14 +20,18 @@ const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
       .get(weatherForecastURL)
       .then((res) => {
         console.log(res.data);
-        locations = res.data["area_metadata"];
+        allLocations.current = res.data["area_metadata"];
       })
       .catch((err) => console.log(err));
   }, [date, time]);
 
   return (
     <div>
-      <LocationSelector location={location} dispatch={dispatch} />
+      <LocationSelector
+        selectedLocation={location}
+        locationList={allLocations.current}
+        dispatch={dispatch}
+      />
       <WeatherDisplay />
     </div>
   );
