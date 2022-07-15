@@ -3,8 +3,9 @@
 This project was created with the React JS framework.  
 To run the project, simply follow the steps below:  
 
-1. Clone the project  
-2. cd into the project directory and run the following commands:
+1. Ensure that you have the latest version of Node.js installed
+2. Clone this project
+3. cd into the project directory and run the following commands:
 
 ## `npm install`
 
