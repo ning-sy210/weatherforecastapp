@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import "./App.css";
 
 import DateTimeField from "./components/DateTimeField";
-import LocationList from "./components/LocationList";
+import LocationSelector from "./components/LocationSelector";
 import TrafficImageFetcher from "./components/TrafficImageFetcher";
 import WeatherDisplay from "./components/WeatherDisplay";
 
@@ -39,7 +39,7 @@ function App() {
         time={appState["time"]}
         dispatch={dispatch}
       />
-      <LocationList />
+      <LocationSelector />
       <WeatherDisplay />
       <TrafficImageFetcher />
     </div>

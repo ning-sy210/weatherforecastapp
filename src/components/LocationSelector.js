@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-const LocationList = () => {
+const LocationSelector = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const locations = ["Location 1", "Location 2", "Location 3"];
 
@@ -30,4 +30,4 @@ const LocationList = () => {
   );
 };
 
-export default LocationList;
+export default LocationSelector;
