@@ -1,7 +1,7 @@
 import React from "react";
 
 const WeatherDisplay = ({ location }) => {
-  if (!location) return;
+  if (Object.keys(location).length === 0) return;
 
   return (
     <div className="vertical-align">
