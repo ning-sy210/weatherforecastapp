@@ -4,7 +4,7 @@ const WeatherDisplay = ({ location }) => {
   if (Object.keys(location).length === 0) return;
 
   return (
-    <div className="vertical-align">
+    <div className="weather-display vertical-align">
       <span>Weather Forecast:</span>
       <span className="bold-text">{location["forecast"]}</span>
     </div>

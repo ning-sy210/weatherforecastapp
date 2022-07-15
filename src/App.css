@@ -2,6 +2,25 @@
   box-sizing: border-box;
 }
 
+#weather-forecast-app {
+  width: 600px;
+  margin: 20px;
+  padding: 20px;
+  outline: 2px solid black;
+}
+
+#app-body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.horizontal-align {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .vertical-align {
   display: inline-flex;
   flex-direction: column;
@@ -10,4 +29,16 @@
 
 .bold-text {
   font-weight: bold;
+}
+
+.weather-display {
+  width: 40%;
+}
+
+.location-selector {
+  width: 60%;
+}
+
+.img {
+  width: 100%;
 }

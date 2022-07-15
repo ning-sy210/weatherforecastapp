@@ -44,7 +44,7 @@ const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
   }, [date, time]);
 
   return (
-    <div>
+    <div className="horizontal-align">
       <LocationSelector
         selectedLocation={location}
         locationList={allLocations.current}

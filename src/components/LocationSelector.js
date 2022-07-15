@@ -7,8 +7,8 @@ const LocationSelector = ({ selectedLocation, locationList, dispatch }) => {
   const locationStr = JSON.stringify(selectedLocation);
 
   return (
-    <div>
-      <Box sx={{ maxWidth: 360 }}>
+    <div className="location-selector">
+      <Box sx={{ maxwidth: 200 }}>
         <FormControl fullWidth>
           <InputLabel id="select-location-label">Location</InputLabel>
           <Select

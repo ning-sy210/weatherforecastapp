@@ -39,7 +39,7 @@ const TrafficImageFetcher = ({ date, time, location }) => {
   }, [date, time, location]);
 
   return camera ? (
-    <img src={camera["image"]} alt="Camera footage" />
+    <img src={camera["image"]} alt="Camera footage" className="img" />
   ) : (
     "No image found :("
   );

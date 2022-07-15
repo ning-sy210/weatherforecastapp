@@ -37,26 +37,30 @@ function App() {
 
   return (
     <div>
-      <DateTimeField
-        date={appState["date"]}
-        time={appState["time"]}
-        dispatch={dispatch}
-      />
-      <WeatherLocationWidget
-        date={appState["date"]}
-        time={appState["time"]}
-        location={appState["location"]}
-        dispatch={dispatch}
-      />
-      {appState["date"] &&
-        appState["time"] &&
-        Object.keys(appState["location"]).length !== 0 && (
-          <TrafficImageFetcher
+      <div id="weather-forecast-app">
+        <div id="app-body">
+          <DateTimeField
+            date={appState["date"]}
+            time={appState["time"]}
+            dispatch={dispatch}
+          />
+          <WeatherLocationWidget
             date={appState["date"]}
             time={appState["time"]}
             location={appState["location"]}
+            dispatch={dispatch}
           />
-        )}
+          {appState["date"] &&
+            appState["time"] &&
+            Object.keys(appState["location"]).length !== 0 && (
+              <TrafficImageFetcher
+                date={appState["date"]}
+                time={appState["time"]}
+                location={appState["location"]}
+              />
+            )}
+        </div>
+      </div>
     </div>
   );
 }

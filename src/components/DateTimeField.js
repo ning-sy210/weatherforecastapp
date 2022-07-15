@@ -9,7 +9,7 @@ import { ACTIONS, DATE_FORMAT } from "../App";
 
 const DateTimeField = ({ date, time, dispatch }) => {
   return (
-    <div>
+    <div className="horizontal-align">
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <DatePicker
           label="Date"
