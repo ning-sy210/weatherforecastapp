@@ -8,19 +8,21 @@ import { DATE_FORMAT, TIME_FORMAT } from "../App";
 
 const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
   const allLocations = useRef([]);
+  const currDate = useRef("");
+  const currTime = useRef("");
 
   useEffect(() => {
     if (!date || !time) return;
 
-    const curr_date = date.format(DATE_FORMAT);
-    const curr_time = time.format(TIME_FORMAT);
-    const weatherForecastURL = `https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=${curr_date}T${curr_time}`;
+    currDate.current = date.format(DATE_FORMAT);
+    currTime.current = time.format(TIME_FORMAT);
+    const weatherForecastURL = `https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=${currDate.current}T${currTime.current}`;
 
     axios
       .get(weatherForecastURL)
       .then((res) => {
         console.log(res.data);
-        allLocations.current = res.data["area_metadata"];
+        allLocations.current = res.data["items"][0]["forecasts"];
       })
       .catch((err) => console.log(err));
   }, [date, time]);
@@ -32,7 +34,9 @@ const WeatherLocationWidget = ({ date, time, location, dispatch }) => {
         locationList={allLocations.current}
         dispatch={dispatch}
       />
-      <WeatherDisplay />
+      <WeatherDisplay
+        location={allLocations.current.find((loc) => loc["area"] === location)}
+      />
     </div>
   );
 };
