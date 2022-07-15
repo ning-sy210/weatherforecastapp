@@ -36,7 +36,7 @@ function App() {
   });
 
   return (
-    <div>
+    <div id="app">
       <div id="weather-forecast-app">
         <div id="app-body">
           <DateTimeField

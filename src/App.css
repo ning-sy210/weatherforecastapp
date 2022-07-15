@@ -2,9 +2,14 @@
   box-sizing: border-box;
 }
 
+#app {
+  display: flex;
+  justify-content: center;
+}
+
 #weather-forecast-app {
   width: 600px;
-  margin: 20px;
+  margin: 35px;
   padding: 20px;
   outline: 2px solid black;
 }
