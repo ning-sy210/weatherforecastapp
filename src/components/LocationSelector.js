@@ -23,10 +23,10 @@ const LocationSelector = ({ selectedLocation, locationList, dispatch }) => {
           >
             {locationList.map((location) => (
               <MenuItem
-                key={`location-menuitem-${location["name"]}`}
-                value={location["name"]}
+                key={`location-menuitem-${location["area"]}`}
+                value={location["area"]}
               >
-                {location["name"]}
+                {location["area"]}
               </MenuItem>
             ))}
           </Select>
