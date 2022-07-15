@@ -38,7 +38,11 @@ const TrafficImageFetcher = ({ date, time, location }) => {
       .catch((err) => console.log(err));
   }, [date, time, location]);
 
-  return camera ? <img src={camera["image"]} /> : "No image found :(";
+  return camera ? (
+    <img src={camera["image"]} alt="Camera footage" />
+  ) : (
+    "No image found :("
+  );
 };
 
 export default TrafficImageFetcher;
