@@ -19,4 +19,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 # Assumptions
 
 - The coordinates (i.e. latitude and longitude) of an area (e.g. Ang Mo Kio) provided by the weather forecast API has 6 decimal places, while the coordinates of the traffic cameras provided by the traffic camera API has 3 decimal places. Since it is highly probable that the two sets of coordinates do not match, a traffic camera is deemed to be in an area as long as the difference between the latitudes and longitudes are each within 0.05 (default value).
-- Because of the above definition, there could be multiple trafic cameras that are in a given area. However, since there is no specification in the assessment details, image from only the first camera that is found to be in the area is displayed. 
+- Because of the above definition, there could be multiple or no traffic cameras that are in a given area. However, since there is no specification in the assessment details, in the event where a traffic camera(s) is in the area, image from only the first camera that is found to be in the area is displayed. 
